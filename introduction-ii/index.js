@@ -8,15 +8,36 @@ const Rx = require("rx");
 //     console.log(c.clientX, c.clientY);
 //   });
 
-const observable = Rx.Observable.create((observer) => {
-  observer.onNext("Hello");
-  observer.onNext("Mello");
-  observer.onNext("Kello");
+// const observable = Rx.Observable.create((observer) => {
+//   observer.onNext("Hello");
+//   observer.onNext("Mello");
+//   observer.onNext("Kello");
+//   observer.onCompleted();
+// });
+
+// observable.subscribe(
+//   (value) => console.log(value),
+//   null,
+//   () => console.log("Completed")
+// );
+
+const observer = Rx.Observer.create(
+  function onNext(x) {
+    console.log("OnNext", x);
+  },
+  function onError(x) {},
+  function onCompleted() {}
+);
+
+const observable2 = Rx.Observable.create((observer) => {
+  observer.onNext("Mui Mui");
+  observer.onNext("Pui Pui");
+  observer.onNext("Kui Kui");
   observer.onCompleted();
 });
 
-observable.subscribe(
+observable2.subscribe(
   (value) => console.log(value),
   null,
-  () => console.log("Completed")
+  () => console.log("Completed 2")
 );
