@@ -22,11 +22,11 @@ const Rx = require("rx");
 // );
 
 const observer = Rx.Observer.create(
-  function onNext(x) {
+  (x) => {
     console.log("OnNext", x);
   },
-  function onError(x) {},
-  function onCompleted() {}
+  (x) => {},
+  () => {}
 );
 
 const observable2 = Rx.Observable.create((observer) => {
